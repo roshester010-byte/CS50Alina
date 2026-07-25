@@ -1,5 +1,5 @@
-#include <ctype.h>
 #include <cs50.h>
+#include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
@@ -19,7 +19,7 @@ int main(void)
     }
 
     int words = 1;
-    for (int w = 0; w<strlen(sentence); w++)
+    for (int w = 0; w < strlen(sentence); w++)
     {
         if (sentence[w] == ' ')
         {
@@ -28,7 +28,7 @@ int main(void)
     }
 
     int sentences = 0;
-    for (int s = 0; s<strlen(sentence); s++)
+    for (int s = 0; s < strlen(sentence); s++)
     {
         if (sentence[s] == '.' || sentence[s] == '!' || sentence[s] == '?')
         {
@@ -36,8 +36,8 @@ int main(void)
         }
     }
 
-    float L = ((float)letters / words) * 100;
-    float S = (sentences / (float)words) * 100;
+    float L = ((float) letters / words) * 100;
+    float S = (sentences / (float) words) * 100;
     float index = 0.0588 * L - 0.296 * S - 15.8;
     int grade = (int) round(index);
 
@@ -54,4 +54,3 @@ int main(void)
         printf("Grade %i\n", grade);
     }
 }
-
