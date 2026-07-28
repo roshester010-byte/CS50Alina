@@ -37,4 +37,6 @@ int main(int argc, string argv[])
             non_repeat[index]++;
         }
     }
+    printf("plaintext:");
+    string message = get_string(" ");
 }
