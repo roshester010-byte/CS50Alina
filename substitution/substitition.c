@@ -27,5 +27,9 @@ int main(int argc, string argv[])
             printf("error: letters should not repeat");
             return 1;
         }
+        else
+        {
+            non_repeat[index]++;
+        }
     }
 }
