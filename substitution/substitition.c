@@ -14,6 +14,11 @@ int main(int argc, string argv[])
 
     //to check 1) the length of the key 2) only alphabet letters 3) doesn't repeat itself
     int non_repeat[26] = {0};
+    if (strlen(argv[1]) != 26)
+    {
+        printf("error: should be exactly 26 letters");
+        return 1;
+    }
     for (int i = 0; i < strlen(argv[1]); i++)
     {
         if (!isalpha(argv[1][i]))
