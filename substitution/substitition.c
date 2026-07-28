@@ -21,7 +21,11 @@ int main(int argc, string argv[])
             printf("error: all characters should be letters");
             return 1;
         }
-        int index = toupper(argv[1][i]) - 'A'
-        if (non_repeat[index])
+        int index = toupper(argv[1][i]) - 'A';
+        if (non_repeat[index]  > 0)
+        {
+            printf("error: letters should not repeat");
+            return 1;
+        }
     }
 }
