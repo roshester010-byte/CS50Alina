@@ -69,13 +69,17 @@ bool vote(string name)
     for (int i = 0; i < candidate_count; i++)
         // Check if candidate's name matches given name
         if (strcmp(candidates[i].name, name) == 0)
+        // If yes, increment candidate's votes and return true
         {
             candidates[i].votes++;
             return true;
         }
-            // If yes, increment candidate's votes and return true
+        // If no match, return false
+        else
+        {
+            return false;
+        }
 
-    // If no match, return false
 }
 
 // Print the winner (or winners) of the election
