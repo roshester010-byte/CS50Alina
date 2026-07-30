@@ -90,6 +90,12 @@ void print_winner(void)
     {
         highest_vote_count = candidates[i].votes;
     }
-    
+
     // Print the candidate (or candidates) with maximum votes
+    for (int i = 0; i < candidate_count; i++)
+    if (highest_vote_count == candidates[i].votes)
+    {
+        printf("Candidate %s has the highest vote count: %i\n", candidates[i].name, candidates[i].votes)
+    }
 }
+
