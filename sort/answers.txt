@@ -1,11 +1,32 @@
-sort1 uses: TODO
+sort1 uses: Bubble Sort
 
-How do you know?: TODO
+How do you know?:
+Sort 1 is a bubble sort, since sorted list of numbers had a progression of Omega(n),
+whereas other lists has taken O(n^2) progression
 
-sort2 uses: TODO
+sort2 uses: Merge Sort
 
-How do you know?: TODO
+How do you know?:
+Sort 2 was the fastest which is O(nlog n) progression, means it is divide and conquer algorithm (Merge Sort)
 
-sort3 uses: TODO
+sort3 uses: Selection Sort
 
-How do you know?: TODO
+How do you know?:
+Sort 3 has taken "the average time" to sort all the lists with milliseconds in difference between each other,
+given it O(n^2) time complexity across all cases
+
+my analysis of sorts based on timing
+sort1 sorted
+random50000 in 5.772s
+reversed50000 in 5.302s
+sorted50000 in 0.605s
+
+sort 2 sorted
+random50000 in 0.478s
+reversed50000 in 0.467s
+sorted50000 in 0.437s
+
+sort3 sorted
+random50000 in 2.374s
+reversed50000 in 2.944s
+sorted50000 in 2.559s
