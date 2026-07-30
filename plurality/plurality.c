@@ -75,10 +75,8 @@ bool vote(string name)
             return true;
         }
         // If no match, return false
-        else
-        {
-            return false;
-        }
+    return false;
+
 
 }
 
