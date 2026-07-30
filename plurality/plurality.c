@@ -90,6 +90,6 @@ void print_winner(void)
     {
         highest_vote_count = candidates[i].votes;
     }
-
+    
     // Print the candidate (or candidates) with maximum votes
 }
