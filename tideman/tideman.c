@@ -102,10 +102,10 @@ bool vote(int rank, string name, int ranks[])
     for (int i = 0; i < candidate_count; i++)
     if (strcmp(name, candidates[i]) == 0)
     {
-        ranks[rank] = i;
+        ranks[rank] = i; //records the vote because the name matched
         return true;
     }
-    return false;
+    return false; //doesn't record the vote, name didn't match
 }
 
 // Update preferences given one voter's ranks
