@@ -143,33 +143,33 @@ void sort_pairs(void)
         for (int j = 0; j < pair_count - 1; j++)
             if (preferences[pairs[j].winner][pairs[j].loser] <
                 preferences[pairs[j + 1].winner][pairs[j + 1].loser])
-                    {
-            pair temporary = pairs[j];
-            pairs[j] = pairs[j + 1];
-            pairs[j + 1] = temporary;
-        }
+            {
+                pair temporary = pairs[j];
+                pairs[j] = pairs[j + 1];
+                pairs[j + 1] = temporary;
+            }
     }
 }
 
-//Check if path exists in the locked graph
+// Check if path exists in the locked graph
 bool path(int start, int end)
-    {
+{
     for (int i = 0; i < candidate_count; i++)
-    if (locked[start][i] && (i == end || path(i, end)))
-    {
-        return true;
-    }
+        if (locked[start][i] && (i == end || path(i, end)))
+        {
+            return true;
+        }
     return false;
-    }
+}
 
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
-    if (!path(pairs[i].loser, pairs[i].winner))
-    {
-        locked[pairs[i].winner][pairs[i].loser] = true;
-    }
+        if (!path(pairs[i].loser, pairs[i].winner))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
 }
 
 // Print the winner of the election
@@ -177,23 +177,20 @@ void print_winner(void)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-    bool is_winner = true;
-    for (int j = 0; j < candidate_count; j++)
-    {
-    if (locked[j][i])
-    {
-    is_winner = false;
-    break;
+        bool is_winner = true;
+        for (int j = 0; j < candidate_count; j++)
+        {
+            if (locked[j][i])
+            {
+                is_winner = false;
+                break;
+            }
+        }
+        if (is_winner)
+        {
+            printf("%s\n", candidates[i]);
+        }
     }
-    }
-    if (is_winner)
-    {
-        printf("%s\n", candidates[i]);
-    }
-    }
-
 }
 // tired, too much syntax, python is easier:(
 // whoever is checking it if you are a real person you are a real hero
-
-
