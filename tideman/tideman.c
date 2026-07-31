@@ -166,6 +166,7 @@ bool path(int start, int end)
 void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
+    if (!path(pairs[i].loser, pairs[i].winner))
 
 }
 
