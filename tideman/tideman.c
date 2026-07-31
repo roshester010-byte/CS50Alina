@@ -100,12 +100,12 @@ int main(int argc, string argv[])
 bool vote(int rank, string name, int ranks[])
 {
     for (int i = 0; i < candidate_count; i++)
-    if (strcmp(name, candidates[i]) == 0)
-    {
-        ranks[rank] = i;
-        return true;
-    }
-    return false; //doesn't record the vote, name didn't match
+        if (strcmp(name, candidates[i]) == 0)
+        {
+            ranks[rank] = i;
+            return true;
+        }
+    return false; // doesn't record the vote, name didn't match
 }
 
 // Update preferences given one voter's ranks
@@ -126,13 +126,12 @@ void add_pairs(void)
     for (int i = 0; i < candidate_count; i++)
     {
         for (int j = 0; j < candidate_count; j++)
-        if (preferences[i][j] > preferences[j][i])
-        {
-            pairs[pair_count].winner = i;
-            pairs[pair_count].loser = j;
-            pair_count++;
-
-        }
+            if (preferences[i][j] > preferences[j][i])
+            {
+                pairs[pair_count].winner = i;
+                pairs[pair_count].loser = j;
+                pair_count++;
+            }
     }
 }
 
@@ -142,8 +141,9 @@ void sort_pairs(void)
     for (int i = 0; i < pair_count - 1; i++)
     {
         for (int j = 0; j < pair_count - 1; j++)
-        if (preferences[pairs[j].winner][pairs[j].loser] < preferences[pairs[j + 1].winner][pairs[j + 1].loser])
-        {
+            if (preferences[pairs[j].winner][pairs[j].loser] <
+                preferences[pairs[j + 1].winner][pairs[j + 1].loser])
+                    {
             pair temporary = pairs[j];
             pairs[j] = pairs[j + 1];
             pairs[j + 1] = temporary;
