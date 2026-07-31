@@ -187,5 +187,9 @@ void print_winner(void)
     }
     }
     }
+    if (is_winner)
+    {
+        printf("%s\n", candidates[i])
+    }
 }
 
