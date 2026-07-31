@@ -186,10 +186,11 @@ void print_winner(void)
     break;
     }
     }
-    }
     if (is_winner)
     {
-        printf("%s\n", candidates[i])
+        printf("%s\n", candidates[i]);
     }
+    }
+
 }
 
