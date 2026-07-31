@@ -151,7 +151,7 @@ void sort_pairs(void)
     }
 }
 
-//Check if certain locked edges would create a cycle
+//Check if path exists in the locked graph
 bool path(int start, int end)
     {
     for (int i = 0; i < candidate_count; i++)
