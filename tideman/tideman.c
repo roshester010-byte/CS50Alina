@@ -165,10 +165,12 @@ void print_winner(void)
     return;
 }
 
-    bool path(int start, int end);
+    bool path(int start, int end)
+    {
     for (int i = 0; i < candidate_count; i++)
     if (locked[start][i] && (i == end || path(i, end)))
     {
         return true;
     }
     return false;
+    }
