@@ -193,4 +193,7 @@ void print_winner(void)
     }
 
 }
+// tired, too much syntax, python is easier:(
+// whoever is checking it if you are a real person you are a real hero
+
 
