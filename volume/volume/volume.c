@@ -41,8 +41,10 @@ int main(int argc, char *argv[])
     // Read samples from input file and write updated data to output file
     int16_t sample;
     while (fread(&sample, sizeof(sample), 1, input))
-    
-
+    {
+    sample = sample * factor
+    fwrite(&sample, sizeof(sample), 1, output)
+    }
     // Close files
     fclose(input);
     fclose(output);
