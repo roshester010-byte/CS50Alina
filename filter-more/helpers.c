@@ -42,7 +42,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE copy[height][width];
+    RGBTRIPLE copy[height][width]; // creating a copy of picture so that next time we count a pixel
+                                   // we are taking a fresh pixel, not changed one
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -50,21 +51,21 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             copy[i][j] = image[i][j];
         }
     }
-
+    // calculating the average of each so we can find what number to make nearby pixels to make it look blurry
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
+            int sum_red = 0;
+            int sum_green = 0;
+            int sum_blue = 0;
+            int count = 0;
             for (int k = i - 1; k <= i+1; k++)
             {
                 for (int l = j-1; l <= j+1; l++)
                 {
                     if (k>= 0 && k<height && l >=0 && l < width)
                     {
-                        int sum_red = 0;
-                        int sum_green = 0;
-                        int sum_blue = 0;
-                        int count = 0;
                         sum_red += copy[k][l].rgbtRed;
                         sum_green += copy[k][l].rgbtGreen;
                         sum_blue += copy[k][l].rgbtBlue;
@@ -72,7 +73,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     }
                 }
             }
-            
+
                     image[i][j].rgbtRed = round((double)sum_red / count);
                     image[i][j].rgbtGreen = round((double)sum_green / count);
                     image[i][j].rgbtBlue = round((double)sum_blue / count);
