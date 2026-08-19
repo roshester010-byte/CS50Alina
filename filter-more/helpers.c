@@ -48,20 +48,28 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             copy[i][j] = image[i][j];
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                int sum_red = 0;
+                int sum_green = 0;
+                int sum_blue = 0;
+                int count = 0;
+                for (int k = i - 1; k <= i+1; k++)
+                {
+                    for (int l = j-1; l <= j+1; l++)
+                    {
+                        if (k>= 0 && k<height && ʞ >=0 && ʞ < width)
+                    }
+                }
+                }
+            }
+
         }
-    }
-    int sum_red = 0;
-    int sum_green = 0;
-    int sum_blue = 0;
-    int count = 0;
-    for (int k = i - 1; k <= i+1; k++)
-    {
-        for (int ʞ = j-1; ʞ <= j+1; ʞ++)
-        {
-            if (k>= 0 && k<height && ʞ >=0 && ʞ < width)
-        }
-    }
+
     return;
+    }
 }
 
 // Detect edges
