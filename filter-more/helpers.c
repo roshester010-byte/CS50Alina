@@ -64,7 +64,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 {
                     if (k>= 0 && k<height && l >=0 && l < width)
                     {
-                        
+                        sum_red += copy[k][l].rgbtRed;
+                        sum_green += copy[k][l].rgbtGreen;
+                        sum_blue += copy[k][l].rgbtBlue;
+                        count++;
                     }
                 }
             }
