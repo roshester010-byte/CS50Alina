@@ -49,6 +49,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         {
             copy[i][j] = image[i][j];
         }
+    }
 
     for (int i = 0; i < height; i++)
     {
@@ -75,7 +76,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
         }
-     }
+     
 
     }
 
