@@ -13,7 +13,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             sum += image[i][j].rgbtGreen;
             sum += image[i][j].rgbtBlue;
 
-            int average = round(sum/3.0);
+            int average = round(sum / 3.0);
             image[i][j].rgbtRed = average;
             image[i][j].rgbtGreen = average;
             image[i][j].rgbtBlue = average;
@@ -27,12 +27,11 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width/2; j++) //because we only need to mirror half of the picture
+        for (int j = 0; j < width / 2; j++) // because we only need to mirror half of the picture
         {
             RGBTRIPLE temp = image[i][j];
             image[i][j] = image[i][width - 1 - j];
             image[i][width - 1 - j] = temp;
-
         }
     }
 
@@ -51,7 +50,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             copy[i][j] = image[i][j];
         }
     }
-    // calculating the average of each so we can find what number to make nearby pixels to make it look blurry
+    // calculating the average of each so we can find what number to make nearby pixels to make it
+    // look blurry
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -60,11 +60,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int sum_green = 0;
             int sum_blue = 0;
             int count = 0;
-            for (int k = i - 1; k <= i+1; k++)
+            for (int k = i - 1; k <= i + 1; k++)
             {
-                for (int l = j-1; l <= j+1; l++)
+                for (int l = j - 1; l <= j + 1; l++)
                 {
-                    if (k>= 0 && k<height && l >=0 && l < width)
+                    if (k >= 0 && k < height && l >= 0 && l < width)
                     {
                         sum_red += copy[k][l].rgbtRed;
                         sum_green += copy[k][l].rgbtGreen;
@@ -74,12 +74,10 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-                    image[i][j].rgbtRed = round((double)sum_red / count);
-                    image[i][j].rgbtGreen = round((double)sum_green / count);
-                    image[i][j].rgbtBlue = round((double)sum_blue / count);
+            image[i][j].rgbtRed = round((double) sum_red / count);
+            image[i][j].rgbtGreen = round((double) sum_green / count);
+            image[i][j].rgbtBlue = round((double) sum_blue / count);
         }
-
-
     }
 
     return;
@@ -101,16 +99,16 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {1, 2, 1}
     };
 
-    for (int i = 0; i<height; i++)
+    for (int i = 0; i < height; i++)
     {
-        for (int j=0; j<width; j++)
+        for (int j = 0; j < width; j++)
         {
             copy[i][j] = image[i][j];
         }
     }
-     for (int i = 0; i<height; i++)
+ for (int i = 0; i < height; i++)
     {
-        for (int j=0; j<width; j++)
+        for (int j = 0; j < width; j++)
         {
             int sum_red_x = 0;
             int sum_red_y = 0;
@@ -119,12 +117,11 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             int sum_green_x = 0;
             int sum_green_y = 0;
 
-
             for (int k = i - 1; k <= i + 1; k++)
             {
                 for (int l = j - 1; l <= j + 1; l++)
                 {
-                    if (k>= 0 && k<height && l >=0 && l < width)
+                    if (k >= 0 && k < height && l >= 0 && l < width)
                     {
                         sum_red_x += Gx[k - i + 1][l - j + 1] * copy[k][l].rgbtRed;
                         sum_red_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtRed;
@@ -132,7 +129,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                         sum_blue_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtBlue;
                         sum_green_x += Gx[k - i + 1][l - j + 1] * copy[k][l].rgbtGreen;
                         sum_green_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtGreen;
-
                     }
                 }
             }
@@ -159,9 +155,6 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtRed = value_red;
             image[i][j].rgbtBlue = value_blue;
             image[i][j].rgbtGreen = value_green;
-
-
         }
-
     }
 }
