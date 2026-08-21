@@ -88,5 +88,80 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
-    return;
+    RGBTRIPLE copy[height][width];
+    int Gx[3][3] = {
+        {-1, 0, 1},
+        {-2, 0, 2},
+        {-1, 0, 1}
+    };
+
+    int Gy[3][3] = {
+        {-1, -2, -1},
+        {0, 0, 0},
+        {1, 2, 1}
+    };
+
+    for (int i = 0; i<height; i++)
+    {
+        for (int j=0; j<width; j++)
+        {
+            copy[i][j] = image[i][j];
+        }
+    }
+     for (int i = 0; i<height; i++)
+    {
+        for (int j=0; j<width; j++)
+        {
+            int sum_red_x = 0;
+            int sum_red_y = 0;
+            int sum_blue_x = 0;
+            int sum_blue_y = 0;
+            int sum_green_x = 0;
+            int sum_green_y = 0;
+
+
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                for (int l = j - 1; l <= j + 1; l++)
+                {
+                    if (k>= 0 && k<height && l >=0 && l < width)
+                    {
+                        sum_red_x += Gx[k - i + 1][l - j + 1] * copy[k][l].rgbtRed;
+                        sum_red_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtRed;
+                        sum_blue_x += Gx[k - i + 1][l - j + 1] * copy[k][l].rgbtBlue;
+                        sum_blue_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtBlue;
+                        sum_green_x += Gx[k - i + 1][l - j + 1] * copy[k][l].rgbtGreen;
+                        sum_green_y += Gy[k - i + 1][l - j + 1] * copy[k][l].rgbtGreen;
+
+                    }
+                }
+            }
+
+            int value_red = round(sqrt(sum_red_x * sum_red_x + sum_red_y * sum_red_y));
+            int value_blue = round(sqrt(sum_blue_x * sum_blue_x + sum_blue_y * sum_blue_y));
+            int value_green = round(sqrt(sum_green_x * sum_green_x + sum_green_y * sum_green_y));
+
+            if (value_red > 255)
+            {
+                value_red = 255;
+            }
+
+            if (value_blue > 255)
+            {
+                value_blue = 255;
+            }
+
+            if (value_green > 255)
+            {
+                value_green = 255;
+            }
+
+            image[i][j].rgbtRed = value_red;
+            image[i][j].rgbtBlue = value_blue;
+            image[i][j].rgbtGreen = value_green;
+
+
+        }
+
+    }
 }
