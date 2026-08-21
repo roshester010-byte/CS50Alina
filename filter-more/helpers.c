@@ -87,6 +87,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE copy[height][width];
+    // sobel grid
     int Gx[3][3] = {
         {-1, 0, 1},
         {-2, 0, 2},
@@ -98,7 +99,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         {0, 0, 0},
         {1, 2, 1}
     };
-
+    // copying the picture so we can get original's pixel number every loop
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -106,6 +107,7 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
             copy[i][j] = image[i][j];
         }
     }
+    // getting the sum so we can determine which pixels belong to the edge of the object
  for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
