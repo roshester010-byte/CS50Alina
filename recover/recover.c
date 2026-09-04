@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
 
     // Open the memory card
 
-    fopen(argv[1], "rb")
+    FILE *card = fopen(argv[1], "rb");
+    
 
     // While there's still data left to read from the memory card
 
