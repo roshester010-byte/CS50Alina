@@ -10,11 +10,18 @@ int main(int argc, char *argv[])
         printf ("Usage: ./recover image \n");
         return 1;
     }
+    
+    FILE *card = fopen(argv[1], "rb");
+    if (card == NULL)
+    {
+        printf("Forensic image cannot be opened for reading\n");
+        return 1;
+    }
 
     // Open the memory card
 
     FILE *card = fopen(argv[1], "rb");
-    
+
 
     // While there's still data left to read from the memory card
 
