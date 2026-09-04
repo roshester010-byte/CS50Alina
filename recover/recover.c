@@ -24,18 +24,41 @@ int main(int argc, char *argv[])
 
     // While there's still data left to read from the memory card
 
+    BYTE buffer[512];
+    int jpeg_count = 0;
+    FILE *img = NULL;
+        while (fread(buffer, 1, 512, card) == 512)
+        {      // Create JPEGs from the data
+            if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff &&
+    buffer[3] >= 0xe0 && buffer[3] <= 0xef)
+            {
+                if (jpeg_count != 0)
+                {
+                    fclose(img);
+                }
 
+            char filename[8];
+            sprintf(filename, "%03d.jpg", jpeg_count);
+            img = fopen(filename, "wb");
+            if (img == NULL)
+            {
+                fclose(card);
+                return 1;
+            }
+            jpeg_count++;
+            }
 
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[3] == 0xe0 &&
-    buffer[2] >= 0xe0 && buffer[2] <= 0xef)
-    {
+        if (jpeg_count != 0)
+        {
+            fwrite(buffer, 512, 1, img);
 
-    }
-        // Create JPEGs from the data
+        }
+        }
 
-        int jpeg_img = 0;
-        FILE *img = NULL;
-        fclose(img);
-        char filename[8];
-        sprintf(filename, "%03d", jpeg_img);
+        if (jpeg_count != 0)
+        {
+            fclose(img);
+        }
+        fclose(card);
+        return 0;
 }
