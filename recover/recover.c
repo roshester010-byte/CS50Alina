@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     if (argc != 2)
     {
-        printf ("Usage: ./recover image \n");
+        printf("Usage: ./recover image \n");
         return 1;
     }
 
@@ -27,15 +27,15 @@ int main(int argc, char *argv[])
     BYTE buffer[512];
     int jpeg_count = 0;
     FILE *img = NULL;
-        while (fread(buffer, 1, 512, card) == 512)
-        {      // Create JPEGs from the data
-            if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff &&
-    buffer[3] >= 0xe0 && buffer[3] <= 0xef)
+    while (fread(buffer, 1, 512, card) == 512)
+    { // Create JPEGs from the data
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && buffer[3] >= 0xe0 &&
+            buffer[3] <= 0xef)
+        {
+            if (jpeg_count != 0)
             {
-                if (jpeg_count != 0)
-                {
-                    fclose(img);
-                }
+                fclose(img);
+            }
 
             char filename[8];
             sprintf(filename, "%03d.jpg", jpeg_count);
@@ -46,19 +46,18 @@ int main(int argc, char *argv[])
                 return 1;
             }
             jpeg_count++;
-            }
+        }
 
         if (jpeg_count != 0)
         {
             fwrite(buffer, 512, 1, img);
+        }
+    }
 
-        }
-        }
-
-        if (jpeg_count != 0)
-        {
-            fclose(img);
-        }
-        fclose(card);
-        return 0;
+    if (jpeg_count != 0)
+    {
+        fclose(img);
+    }
+    fclose(card);
+    return 0;
 }
