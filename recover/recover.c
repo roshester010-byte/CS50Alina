@@ -25,5 +25,7 @@ int main(int argc, char *argv[])
 
         int jpeg_img = 0;
         FILE *img = NULL;
-        fclose(img)
+        fclose(img);
+        char filename[8];
+        sprintf(filename, "%03d", jpeg_img);
 }
