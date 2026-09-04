@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef unsigned char BYTE;
+
 int main(int argc, char *argv[])
 {
     // Accept a single command-line argument
@@ -21,6 +23,8 @@ int main(int argc, char *argv[])
     }
 
     // While there's still data left to read from the memory card
+
+    
 
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[3] == 0xe0 &&
     buffer[2] >= 0xe0 && buffer[2] <= 0xef)
