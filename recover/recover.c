@@ -25,4 +25,5 @@ int main(int argc, char *argv[])
 
         int jpeg_img = 0;
         FILE *img = NULL;
+        fclose(img)
 }
